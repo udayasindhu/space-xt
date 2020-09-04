@@ -1,0 +1,151 @@
+<h2>SpaceX Launch Programs</h2>
+<div class="row">
+  <div
+    class="card col-sm-2 col-lg-2 col-xs-12 filter-card"
+    id="card"
+    style="float: left"
+  >
+    <div class="card-body">
+      <h5 class="card-title">Filters</h5>
+      <p class="card-text filter-text">Launch Year</p>
+      <div class="row">
+        <div class="col">
+          <a href="#2006" (click)="getYearData(2006)" class="btn">2006</a>
+          <a
+            href="#2007"
+            (click)="getYearData(2007)"
+            class="btn"
+            style="margin-left: 1px"
+            >2007</a
+          >
+          <a href="#2008" (click)="getYearData(2008)" class="btn">2008</a>
+          <a
+            href="#2009"
+            (click)="getYearData(2009)"
+            class="btn"
+            style="margin-left: 1px"
+            >2009</a
+          >
+          <a href="#2010" (click)="getYearData(2010)" class="btn">2010</a>
+          <a
+            href="#2011"
+            (click)="getYearData(2011)"
+            class="btn"
+            style="margin-left: 1px"
+            >2011</a
+          >
+          <a href="#2012" (click)="getYearData(2012)" class="btn">2012</a>
+          <a
+            href="#2013"
+            (click)="getYearData(2013)"
+            class="btn"
+            style="margin-left: 1px"
+            >2013</a
+          >
+        </div>
+        <div class="col">
+          <a href="#2014" (click)="getYearData(2014)" class="btn">2014</a>
+          <a
+            href="#2015"
+            (click)="getYearData(2015)"
+            class="btn"
+            style="margin-left: 1px"
+            >2015</a
+          >
+          <a href="#2016" (click)="getYearData(2016)" class="btn">2016</a>
+          <a
+            href="#2017"
+            (click)="getYearData(2017)"
+            class="btn"
+            style="margin-left: 1px"
+            >2017</a
+          >
+          <a href="#2018" (click)="getYearData(2018)" class="btn">2018</a>
+          <a
+            href="#2019"
+            (click)="getYearData(2019)"
+            class="btn"
+            style="margin-left: 1px"
+            >2019</a
+          >
+          <a href="#2020" (click)="getYearData(2020)" class="btn">2020</a>
+        </div>
+      </div>
+      <p class="card-text filter-text">Successful Launch</p>
+      <div class="row">
+        <div class="col">
+          <a href="#launch/success" (click)="getLaunchStatus(true)" class="btn"
+            >True</a
+          >
+          <a
+            href="#launch/failure"
+            (click)="getLaunchStatus(false)"
+            class="btn"
+            style="margin-left: 1px"
+            >False</a
+          >
+        </div>
+      </div>
+      <p class="card-text filter-text">Successful Landing</p>
+      <div class="row">
+        <div class="col">
+          <a
+            href="#landing/success"
+            (click)="getlandingStatus(true)"
+            class="btn"
+            >True</a
+          >
+          <a
+            href="#landing/failure"
+            (click)="getlandingStatus(false)"
+            class="btn"
+            style="margin-left: 1px"
+            >False</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-9 col-lg-9 col-xm-12" style="float: right">
+    <div class="row">
+      <div class="col-sm-6 col-lg-3 card-col" *ngFor="let item of filteredData">
+        <div class="card menu-card" id="card">
+          <img
+            class="card-img-top"
+            src="{{ item.links.mission_patch_small }}"
+            alt="Image"
+          />
+          <div class="card-body">
+            <h5 class="card-title menu-card-title">
+              {{ item.mission_name }}#{{ item.flight_number }}
+            </h5>
+            <p class="card-text">
+              <b>Mission Ids:</b>
+
+              <li *ngIf="item.mission_id.length > 0; else noIdBlock">
+                {{ item.mission_id }}
+              </li>
+              <ng-template #noIdBlock>
+                <li>NA</li>
+              </ng-template>
+            </p>
+            <p class="card-text"><b>Launch Year:</b>{{ item.launch_year }}</p>
+            <p class="card-text">
+              <b>Successful Launch:</b>{{ item.launch_success }}
+            </p>
+            <p class="card-text">
+              <b>Successful Landing:</b
+              >{{
+                item.rocket.first_stage.cores[0].land_success
+                  ? item.rocket.first_stage.cores[0].land_success
+                  : "NA"
+              }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer><b>Developed by</b> Sindhu</footer>
